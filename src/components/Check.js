@@ -33,16 +33,6 @@ function Check({onClose, onRemove, items = []}){
           <button className="just-button">Оформить заказ<img src="/img/arrow.svg" alt="arrow"/></button>
         </div>
         </div>
-        ): (<div>
-          <div className = "EmptyCart mt-50 d-flex align-center justify-center flex-column flex">
-          <img className = "mb-20" width = "140px" height = "140px" src ="/img/cart-pic.jpg" alt ="picCart"/>
-          <h2>Корзина пустая</h2>
-          <p className = "opacity-6 mr-40 ml-40 text-center">Добавьте хотя бы один товар, чтобы сделать заказ.</p>
-          <button onClick ={onClose} className = "Back-button"><p className = "ml-10">Вернуться назад</p>
-          <img src ="/img/arrow-back.svg" alt ="arrow-back"/>
-          </button>
-          </div>
-        </div>)}
       </div>
       </div>
     );
