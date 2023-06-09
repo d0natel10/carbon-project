@@ -21,7 +21,7 @@ function Autorization() {
         e.preventDefault();
         const authenticatedUser = users.find((u) => u.login === login && u.password === password);
         if (!authenticatedUser) {
-            alert('Incorrect username or password');
+            alert('Неверный пароль. Повторите попытку');
             return;
         }
         localStorage.setItem('userId', authenticatedUser.id);
@@ -37,19 +37,21 @@ function Autorization() {
     return (
         <div className="overlay">
             <div className="Login">
-                <h2>Authorization</h2>
-                <Link to="/registration" className="Link">
-                    <span>Want to register?</span>
-                </Link>
+                <h2>Авторизация</h2>
+            
                 <div className="login">
-                    <input placeholder="Login..." value={login} onChange={(e) => setLogin(e.target.value)} />
+                    <input className = "opacity-8" placeholder="Логин..." value={login} onChange={(e) => setLogin(e.target.value)} />
                 </div>
                 <div className="login">
-                    <input placeholder="Password..." value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input className = "opacity-8" placeholder="Пароль..." value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
 
-                <button className="logBtn" onClick={handleLogin}>
-                    Log in
+                <Link to="/registration" className="Link">
+                    <span className = "opacity-6 mt-10 align-center">Зарегистрироваться...</span>
+                </Link>
+
+                <button className="logBtn mt-20" onClick={handleLogin}>
+                    Вход
                 </button>
 
             </div>

@@ -13,13 +13,13 @@ function User({ onCloseUser, orders = [20], cartItems = [20], favoriteItems = [2
                 setUser(res.data);
             }).catch((err) => {
                 console.error(err);
-                alert('Error getting user information');
+                alert('Ошибка получения информации');
             });
         }
     }, []);
 
     if (!user) {
-        return <div>First log in...</div>;
+        return <div>Первая авторизация...</div>;
     }
 
     const Exit = async () => {
@@ -60,8 +60,8 @@ function User({ onCloseUser, orders = [20], cartItems = [20], favoriteItems = [2
                     <span>Email:</span>
                     <b>{user.email}</b>
 
-                    <span>Country and number:</span>
-                    <b>{user.countryCodeId}{user.phoneNum}</b>
+                    <span>number:</span>
+                    <b>{user.phoneNum}</b>
                     <b onClick={onClickOrders} className="clickOrders">My orders</b>
                 </div>
 

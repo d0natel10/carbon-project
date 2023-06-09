@@ -1,6 +1,6 @@
 import Card from '../components/Card';
 
-function Home({items, setSearchItem, onChangeSearchInput, searchItem, onAddToCart, onAddToFavorite}){
+function Home({items, setSearchItem, onChangeSearchInput, searchItem, onAddToCart, onAddToFavorite, cartItems}){
 
     return (
         <div className = "content p-40"> 
@@ -20,6 +20,7 @@ function Home({items, setSearchItem, onChangeSearchInput, searchItem, onAddToCar
       key = {index} 
       onPlus = {(obj) =>onAddToCart(obj)}
       onFavorite = {(obj) =>onAddToFavorite(obj)}
+      added = {cartItems.some(obj => Number(obj.id) === Number(item.id))}
       {...item}
       />))}
       </div>

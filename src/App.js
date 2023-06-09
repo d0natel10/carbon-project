@@ -16,6 +16,8 @@ function App() {
 
 const [cartOpened, setCartOpened] = React.useState(false);
 
+const [userOpened, setUserOpened] = React.useState(false);
+
 const [items, setItems] = React.useState([]);
 
 const [cartItems, setCartItems] = React.useState([]);
@@ -24,16 +26,18 @@ const [favorites, setFavorites] = React.useState([]);
 
 const [searchItem, setSearchItem] = React.useState('');
 
+const [user, setUser] = React.useState([]);
+
 React.useEffect(()=>{
-  axios.get('https://647f4452c246f166da907515.mockapi.io/items').then((res) => {
-    setItems(res.data)
-    });
-    axios.get('https://647f4452c246f166da907515.mockapi.io/cart').then((res) => {
-    setCartItems(res.data)
-  });
-  axios.get('https://647f4452c246f166da907515.mockapi.io/cart').then((res) => {
-    setFavorites(res.data)
-});
+  async function fetchData(){
+    const CartResponse = await axios.get('https://647f4452c246f166da907515.mockapi.io/cart');
+    const FavoritesResponse = await axios.get('https://647f4452c246f166da907515.mockapi.io/cart');
+    const ItemsResponse = await axios.get('https://647f4452c246f166da907515.mockapi.io/items');
+      setCartItems(CartResponse.data)
+      setFavorites(FavoritesResponse.data)
+      setItems(ItemsResponse.data)
+  }
+  fetchData();
 }, []);
 
 
@@ -44,13 +48,13 @@ const onAddToCart = async (obj) => {
           setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
       }
       else {
-          const { data } = await axios.post('https://647f4452c246f166da907515.mockapi.io/cart', obj);
-          setCartItems((prev) => [...prev, data]);
+          axios.post('https://647f4452c246f166da907515.mockapi.io/cart', obj);
+          setCartItems((prev) => [...prev, obj]);
       }
 
   } catch (error) {
 
-      alert('Do not add to cart');
+      alert('Ошибка добавления в корзин.');
 
   }
 }; 
@@ -67,7 +71,7 @@ const onAddToFavorite = async (obj) => {
       }
 
   } catch (error) {
-      alert('Do not add to favorites');
+      alert('Не было добавлено в избранное');
 
   }
 };
@@ -81,14 +85,19 @@ const onRemoveItem = (id)=>{
   setCartItems((prev) => prev.filter(item => item.id !== id));
 }
 
+const userId = localStorage.getItem('userId');
+
   return (
 
     <div className="wrapper clear">
     {cartOpened ?<Check items ={cartItems} onClose={() => setCartOpened(false)} onRemove = {onRemoveItem}/> : null}
-      <Header onClickCart = {() => setCartOpened(true)}/>
+    {userOpened ? <User cartItems={cartItems} favorites={favorites} onCloseUser={() => setUserOpened(false)} /> : null}
+      <Header onClickCart = {() => setCartOpened(true)}
+               onClickUser={() => setUserOpened(true)}/>
     <Routes>
       <Route path= "/" element = {<Home
       items ={items}
+      cartItems = {cartItems}
       setSearchItem = {setSearchItem}
       onChangeSearchInput = {onChangeSearchInput} 
       searchItem = {searchItem}

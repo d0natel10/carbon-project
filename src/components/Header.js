@@ -17,7 +17,7 @@ function Header(props){
           <img width= {18} height = {18} src = "/img/card.svg" alt = "cartItem-icon"/>
           <span>1205 руб.</span>
         </li>
-        <li className = "mr-30 cu-p">
+        <li className = "mr-20 cu-p">
           <Link to ="/favorites">
           <img width= {18} height = {18} src = "/img/header-heart.svg" alt = "favorite-icon"/>
           </Link>

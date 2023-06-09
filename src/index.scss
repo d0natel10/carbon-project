@@ -67,6 +67,7 @@ header {
 }
 
 .overlay{
+
   position: absolute;
   left: 0;
   top: 0;
@@ -77,6 +78,8 @@ header {
 }
 
 .drawer{
+display: flex;
+flex-direction: column;
 position: absolute;
 width: 420px;
 height: 100%;
@@ -224,7 +227,9 @@ div{
     width: 100%;
     height: 100%;
     right: 0;
+    background: #ffffff;
     box-shadow: -10px 4px 24px rgba(0,0,0,0.01);
+    padding: 30px;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -239,37 +244,80 @@ div{
     font-size: 24px;
     margin-bottom: 30px;
 }
+    .login-1{
+      div{
+        margin-top: 20px;
+        flex: 1;
+        height: 1px;
+        border-bottom: 3px dashed #DFDFDF;
+        position: relative;
+        top: -4px;
+        margin: 0 7px;
+      }  
+    }
 
 }
 
 .Login input {
+  border: 1px solid #dddddd;
+  border-radius: 20px;
+  padding: 0 15px;
+  position: relative;
   display: block;
-  width: 200px;
-  height: 20px;
+  width: 300px;
+  height: 50px;
   margin-bottom: 10px;
 }
 
 
 .logBtn {
-  background: #afd10c;
-  border: 1px solid #000000;
-  box-sizing: border-box;
+  top: 20px;
+  width: 17%;
+  height: 52px;
+  background: #49ACB3;
   border-radius: 18px;
-  height: 40px;
-  width: 200px;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
-  &:hover
+  transition: 0.2s ease-in-out;
 
-{
-  background: lighten (#9dd558, 5%);
+  &:hover{
+    background: lighten(#49ACB3, 5%);
+  }
+
+  &:active{
+    background: darken(#49ACB3, 5%);
+  }
 }
 
-&:activate {
-  background: lighten (#afd10c, 5%);
-}
+  .logBtn-reg{
+  top: 20px;
+  width: 20%;
+  height: 52px;
+  background: #49ACB3;
+  border-radius: 18px;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
 
-}
+  &:hover{
+    background: lighten(#49ACB3, 5%);
+  }
+
+  &:active{
+    background: darken(#49ACB3, 5%);
+  }
+  }
+
+
 .Link {
-  text-decoration: none;
+  span:hover {
+    text-decoration: underline !important;
+    color: "red";
+  }
 }
