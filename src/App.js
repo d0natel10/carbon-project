@@ -10,22 +10,15 @@ import Favorites from './pages/Favorites';
 import Autorization from './components/sign-in-out/Autorization';
 import User from './components/sign-in-out/User';
 import Registration from './components/sign-in-out/Registration';
-
+import RegistrationData from './components/sign-in-out/RegistrationData';
 
 function App() {
-
 const [cartOpened, setCartOpened] = React.useState(false);
-
 const [userOpened, setUserOpened] = React.useState(false);
-
 const [items, setItems] = React.useState([]);
-
 const [cartItems, setCartItems] = React.useState([]);
-
 const [favorites, setFavorites] = React.useState([]);
-
 const [searchItem, setSearchItem] = React.useState('');
-
 const [user, setUser] = React.useState([]);
 
 React.useEffect(()=>{
@@ -112,7 +105,12 @@ const userId = localStorage.getItem('userId');
         <Route path="/login" element = {<Autorization/>}>
         </Route>
 
-        <Route path="/registration" element={<Registration/>}>
+        <Route path="/registration" element={<Registration
+        />}>
+        </Route>
+          
+        <Route path="/registrationData" element={<RegistrationData
+        />}>
         </Route>
 
       </Routes>

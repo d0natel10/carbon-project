@@ -1,65 +1,60 @@
 
 import axios from 'axios';
-import React from 'react';
-
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Registration() {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [phoneNum, setPhoneNum] = React.useState('');
-    const [name, setName] = React.useState('');
-    const [login, setLogin] = React.useState('');
-    const [options, setOptions] = React.useState([]);
+ 
+  const [password, setPassword] = useState('');
+  const [login, setLogin] = useState('');
 
-    
-    const handleLogin1 = (e) => {
-        e.preventDefault();
-        axios.post('http://localhost:5295/User', {
-            email,
-            password,
-            name,
-            login,
-            phoneNum
-        }).then((res) => {
-            localStorage.setItem('token', res.data.token);
-            window.location.href = '/login';
-        }).catch((err) => {
-            console.error(err);
-            alert('Registration Error');
-        });
-    };
+  const handleRegistration = (e) => {
+    e.preventDefault();
+    axios.post('https://647f4452c246f166da907515.mockapi.io/cart', {
+        password,
+        login
+    }).then((res) => {
+        localStorage.setItem('token', res.data.token);
+        window.location.href = '/registrationData';
+    }).catch((err) => {
+        console.error(err);
+        alert('Registration Error');
+    });
+};
 
 
-    React.useEffect(() => {
-        document.querySelector('.overlay').style.display = 'block';
-    }, []);
+React.useEffect(() => {
+    document.querySelector('.overlay').style.display = 'block';
+}, []);
 
-    return (
-        <div className="overlay">
-            <div className="Login">
-                <h2>Регистрация</h2>
-                <div className="login">
-                    <input className = "opacity-8" placeholder="Имя..." value={name} onChange={(e) => setName(e.target.value)} />
-                </div>
-                <div className="login">
-                    <input className = "opacity-8" placeholder="Логин..." value={login} onChange={(e) => setLogin(e.target.value)} />
-                </div>
-                <div className="login">
-                    <input className = "opacity-8" placeholder="Пароль..." value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <div className="login">
-                    <input className = "opacity-8" placeholder="E-mail..." value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div className="login-1">
-                    <input className = "opacity-8" placeholder="Номер телефона..." value={phoneNum} onChange={(e) => setPhoneNum(e.target.value)} />
-                    <div className = "mt-30"></div>
-                </div>
-
-                <button className="logBtn-reg mt-20 align-center" onClick={handleLogin1}>
-                Зарегистрироваться
-                </button>
-            </div>
+  return (
+    <div className="overlay">
+      <div className="Login">
+        <div className="regis d-flex justify-between">
+          <Link to="/login">
+            <img className="mr-30 cu-p" src="/img/arrow-reg.svg" alt="reg-arrow" />
+          </Link>
+          <h2>Регистрация</h2>
         </div>
-    );
+  
+        <div className="login">
+          <input className="opacity-8" placeholder="Логин..." value={login} onChange={(e) => setLogin(e.target.value)} />
+        </div>
+        <div className="login-1">
+          <input
+            className="opacity-8"
+            placeholder="Пароль..."
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button className="logBtn-reg mt-20 align-center" onClick={handleRegistration}>
+            Продолжить...
+        </button>
+      </div>
+    </div>
+  );
 }
+
 export default Registration;

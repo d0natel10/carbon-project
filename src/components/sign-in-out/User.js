@@ -61,7 +61,7 @@ function User({ onCloseUser, orders = [20], cartItems = [20], favoriteItems = [2
                     <b>{user.email}</b>
 
                     <span>number:</span>
-                    <b>{user.phoneNum}</b>
+                    <b>{user.phone}</b>
                     <b onClick={onClickOrders} className="clickOrders">My orders</b>
                 </div>
 

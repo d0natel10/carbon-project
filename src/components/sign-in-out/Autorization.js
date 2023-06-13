@@ -37,8 +37,14 @@ function Autorization() {
     return (
         <div className="overlay">
             <div className="Login">
-                <h2>Авторизация</h2>
-            
+
+            <div className = "regis d-flex justify-between">
+            <Link to ="/">
+                <img className = "mr-30 cu-p" src = "/img/arrow-reg.svg" alt = "reg-arrow"/>
+            </Link>
+                    <h2>Авторизация</h2>
+                </div>
+
                 <div className="login">
                     <input className = "opacity-8" placeholder="Логин..." value={login} onChange={(e) => setLogin(e.target.value)} />
                 </div>
